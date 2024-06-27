@@ -59,7 +59,7 @@ class Positional:
         self.type = ArgumentOrder.Positional
 
 class ArgumentHandler:
-    def __init__(self, description: str, order: list[ArgumentOrder]):
+    def __init__(self, description: str):
         """
         Creates a handler for script arguments
 
@@ -68,7 +68,6 @@ class ArgumentHandler:
         """
 
         self.description = description
-        self.order = order
         self.arguments = []
 
     def generateHelp(self, root_name):
