@@ -1,5 +1,4 @@
 from sys import argv
-from pathlib import Path
 
 class RootNameNotFound(Exception):
     def __init__(self, message):
