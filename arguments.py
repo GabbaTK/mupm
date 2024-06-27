@@ -38,7 +38,7 @@ class Option:
         self.type = ArgumentOrder.Options
     
 class Positional:
-    def __init__(self, argument: str, code_name: str, position: int, arg_type, help: str, default = None):
+    def __init__(self, argument: str, code_name: str, position: int, arg_type, default = None):
         """
         Creates a new option for the program
 
@@ -46,7 +46,6 @@ class Positional:
         code_name: The variable name to refrence in your code
         position: In what position will the argument be provided (python your_program.py POSITIONAL-ARGUMNET-POSITION-1, POSITIONAL-ARGUMENT-POSITION-2)
         arg_type: What type is the argument (str, int)
-        help: When -h or --help is used, what should be displayed for this argument
         default: What is the default value if its not provided (leave blank to make this argument mandatory)
         """
 
@@ -55,7 +54,6 @@ class Positional:
         self.position = position
         self.arg_type = arg_type
         self.default = default
-        self.help = help
         self.type = ArgumentOrder.Positional
 
 class ArgumentHandler:
