@@ -208,8 +208,9 @@ class ArgumentHandler:
             for arg in self.arguments:
                 if arg.type == ArgumentOrder.Positional:
                     if arg.position == position_index:
-                        position_index += 1
                         arguments[arg.code_name] = arg.arg_type(input_arg)
+
+            position_index += 1
 
         # Verify that all arguments are present
         for arg in self.arguments:
