@@ -17,19 +17,12 @@ class AnsiColorCodes:
 
 class Logger:
     def __init__(self, logging_type: LoggingTypes, timestamps: bool = True, log_type: bool = False):
-        """
-        Initialise the logger
+        """Initialises the logger
 
-        Types: INFO
-               NOTICE
-               WARNING
-               ALERT
-               ERROR
-               CRITICAL
-
-        logging_type: How to log messages (Prefix: [*] MSG, Plain: MSG)
-        timestamps: Enable or disable the printing of timestamps
-        log_type: Whether to log just the message or include the type (INFO, WARNING, CRITICAL)
+        Args:
+            logging_type (LoggingTypes): How to log messages (Prefix: [*] MSG, Plain: MSG)
+            timestamps (bool, optional): Enable or disable the printing of timestamps. Defaults to True.
+            log_type (bool, optional): Whether to log just the message or include the type (INFO, WARNING, CRITICAL). Defaults to False.
         """
 
         self.logging_type = logging_type
