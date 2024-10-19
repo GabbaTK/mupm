@@ -184,7 +184,14 @@ class ArgumentHandler:
                 found = False
 
                 try:
-                    arguments[found_arg.code_name] = found_arg.arg_type(input_arg)
+                    if arguments[found_arg.code_name] != found_arg.default:
+                        if type(arguments[found_arg.code_name]) != list:
+                            arguments[found_arg.code_name] = [arguments[found_arg.code_name]]
+                            arguments[found_arg.code_name].append(found_arg.arg_type(input_arg))
+                        else:
+                            arguments[found_arg.code_name].append(found_arg.arg_type(input_arg))
+                    else:
+                        arguments[found_arg.code_name] = found_arg.arg_type(input_arg)
                 except:
                     raise WrongArgumentType(f"Argument {input_arg} is type {type(input_arg)}, but is expected to be a type {found_arg.arg_type}")
                 
