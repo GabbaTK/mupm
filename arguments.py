@@ -62,7 +62,6 @@ class ArgumentHandler:
         Creates a handler for script arguments
 
         description: A description for the program that is displayed once the -h argument is used or invalid arguments are passed
-        order: A list ocntaining the order of arguments passed into the program
         """
 
         self.description = description
