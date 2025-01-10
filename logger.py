@@ -15,13 +15,36 @@ class AnsiColorCodes:
     Cyan = "\033[36m"
     White = "\033[37m"
 
+class FunctionLogger:
+    def __init__(self, timestamps: bool = False):
+        """Initialises the function logger
+        Logs the function that called the logger instead of the log type
+
+        Args:
+            timestamps (bool, optional): Enable or disable the printing of timestamps. Defaults to False.
+        """
+
+        self.timestamps = timestamps
+
+    def log(self, function: str, msg: str, functionTextColor: AnsiColorCodes = AnsiColorCodes.Reset, msgColor: AnsiColorCodes = AnsiColorCodes.Reset):
+        """Log a message from a function
+
+        Args:
+            function (str): The function name that called the log function
+            msg (str): The message to log
+            functionCallColor (AnsiColorCodes, optional): The color of the text saying the function name. Defaults to AnsiColorCodes.Reset.
+            msgColor (AnsiColorCodes, optional): The color of the message text. Defaults to AnsiColorCodes.Reset.
+        """
+
+        print(f"[{functionTextColor}{function}{AnsiColorCodes.Reset}] {msgColor}{msg}{AnsiColorCodes.Reset}")
+
 class Logger:
-    def __init__(self, logging_type: LoggingTypes, timestamps: bool = True, log_type: bool = False):
+    def __init__(self, logging_type: LoggingTypes, timestamps: bool = False, log_type: bool = False):
         """Initialises the logger
 
         Args:
             logging_type (LoggingTypes): How to log messages (Prefix: [*] MSG, Plain: MSG)
-            timestamps (bool, optional): Enable or disable the printing of timestamps. Defaults to True.
+            timestamps (bool, optional): Enable or disable the printing of timestamps. Defaults to False.
             log_type (bool, optional): Whether to log just the message or include the type (INFO, WARNING, CRITICAL). Defaults to False.
         """
 
