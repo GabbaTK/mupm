@@ -32,7 +32,7 @@ class FunctionLogger:
         Args:
             function (str): The function name that called the log function
             msg (str): The message to log
-            functionCallColor (AnsiColorCodes, optional): The color of the text saying the function name. Defaults to AnsiColorCodes.Reset.
+            functionTextColor (AnsiColorCodes, optional): The color of the text saying the function name. Defaults to AnsiColorCodes.Reset.
             msgColor (AnsiColorCodes, optional): The color of the message text. Defaults to AnsiColorCodes.Reset.
         """
 
