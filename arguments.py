@@ -145,7 +145,7 @@ class ArgumentHandler:
         """
         Parses all the arguments provided
 
-        root_name: The name of the main program running, if you only use it, it will be __name__
+        root_name: The name of the main program running, if you only use it, it will be __file__
         """
 
         if "-h" in argv or "--help" in argv:
