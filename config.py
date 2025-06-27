@@ -56,7 +56,8 @@ def deleteConfig():
     """Deletes the config
     """
 
-    os.remove(r".\config.ini")
+    try:     os.remove(r".\config.ini")
+    except:  pass
 
 def updateConfig(args):
     print("-----                 UPDATING CONFIG                 -----")
