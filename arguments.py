@@ -68,11 +68,6 @@ class ArgumentHandler:
         self.arguments = []
 
     def generateHelp(self):
-        for arg in self.arguments:
-            if arg.type == ArgumentOrder.Options:
-                print(" [OPTIONS]", end="")
-                break
-
         position_index = 1
         found = False
         while True:
@@ -87,8 +82,6 @@ class ArgumentHandler:
 
             found = False
             position_index += 1
-
-        print("\n")
 
         print(self.description)
 
