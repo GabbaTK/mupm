@@ -14,6 +14,7 @@ class AnsiColorCodes:
     Magenta = "\033[35m"
     Cyan = "\033[36m"
     White = "\033[37m"
+    Gray = "\033[2m"
 
 class FunctionLogger:
     def __init__(self, timestamps: bool = False):
@@ -25,107 +26,104 @@ class FunctionLogger:
         """
 
         self.timestamps = timestamps
+        self.now = datetime.datetime.now()
 
-    def log(self, function: str, msg: str, functionTextColor: AnsiColorCodes = AnsiColorCodes.Reset, msgColor: AnsiColorCodes = AnsiColorCodes.Reset):
+    def log(self, function: str, msg: str, functionTextColor: AnsiColorCodes = AnsiColorCodes.Reset):
         """Log a message from a function
 
         Args:
             function (str): The function name that called the log function
             msg (str): The message to log
             functionTextColor (AnsiColorCodes, optional): The color of the text saying the function name. Defaults to AnsiColorCodes.Reset.
-            msgColor (AnsiColorCodes, optional): The color of the message text. Defaults to AnsiColorCodes.Reset.
         """
 
-        print(f"[{functionTextColor}{function}{AnsiColorCodes.Reset}] {msgColor}{msg}{AnsiColorCodes.Reset}")
+        timestamp = ""
+        if self.timestamps:
+            timestamp = f"{AnsiColorCodes.Gray}{self.now.time()}{AnsiColorCodes.Reset} "
+
+        print(f"{timestamp}[{functionTextColor}{function}{AnsiColorCodes.Reset}] {msg}")
 
 class Logger:
-    def __init__(self, logging_type: LoggingTypes, timestamps: bool = False, log_type: bool = False):
+    def __init__(self, logging_type: LoggingTypes, timestamps: bool = False):
         """Initialises the logger
 
         Args:
             logging_type (LoggingTypes): How to log messages (Prefix: [*] MSG, Plain: MSG)
             timestamps (bool, optional): Enable or disable the printing of timestamps. Defaults to False.
-            log_type (bool, optional): Whether to log just the message or include the type (INFO, WARNING, CRITICAL). Defaults to False.
         """
 
         self.logging_type = logging_type
         self.timestamps = timestamps
-        self.log_type = log_type
+        self.now = datetime.datetime.now()
 
     def info(self, msg: str):
         prefixes = ""
 
         if self.timestamps:
-            now = datetime.datetime.now()
-            prefixes += f"{AnsiColorCodes.Reset}{now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Green}+{AnsiColorCodes.Reset}] "
-        if self.log_type:
-            prefixes += f"{AnsiColorCodes.Green}INFO      {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{AnsiColorCodes.Green}{msg}{AnsiColorCodes.Reset}")
+        prefixes += f"{AnsiColorCodes.Green}INFO      {AnsiColorCodes.Reset} "
+
+        print(f"{prefixes}{msg}")
 
     def notice(self, msg: str):
         prefixes = ""
 
         if self.timestamps:
-            now = datetime.datetime.now()
-            prefixes += f"{AnsiColorCodes.Reset}{now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Blue}*{AnsiColorCodes.Reset}] "
-        if self.log_type:
-            prefixes += f"{AnsiColorCodes.Blue}NOTICE    {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{AnsiColorCodes.Blue}{msg}{AnsiColorCodes.Reset}")
+        prefixes += f"{AnsiColorCodes.Blue}NOTICE    {AnsiColorCodes.Reset} "
+
+        print(f"{prefixes}{msg}")
 
     def warning(self, msg: str):
         prefixes = ""
 
         if self.timestamps:
-            now = datetime.datetime.now()
-            prefixes += f"{AnsiColorCodes.Reset}{now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Yellow}-{AnsiColorCodes.Reset}] "
-        if self.log_type:
-            prefixes += f"{AnsiColorCodes.Yellow}WARNING   {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{AnsiColorCodes.Yellow}{msg}{AnsiColorCodes.Reset}")
+        prefixes += f"{AnsiColorCodes.Yellow}WARNING   {AnsiColorCodes.Reset} "
+
+        print(f"{prefixes}{msg}")
 
     def alert(self, msg: str):
         prefixes = ""
 
         if self.timestamps:
-            now = datetime.datetime.now()
-            prefixes += f"{AnsiColorCodes.Reset}{now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Magenta}-{AnsiColorCodes.Reset}] "
-        if self.log_type:
-            prefixes += f"{AnsiColorCodes.Magenta}ALERT     {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{AnsiColorCodes.Magenta}{msg}{AnsiColorCodes.Reset}")
+        prefixes += f"{AnsiColorCodes.Magenta}ALERT     {AnsiColorCodes.Reset} "
+
+        print(f"{prefixes}{msg}")
 
     def error(self, msg: str):
         prefixes = ""
 
         if self.timestamps:
-            now = datetime.datetime.now()
-            prefixes += f"{AnsiColorCodes.Reset}{now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Red}!{AnsiColorCodes.Reset}] "
-        if self.log_type:
-            prefixes += f"{AnsiColorCodes.Red}ERROR     {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{AnsiColorCodes.Red}{msg}{AnsiColorCodes.Reset}")
+        prefixes += f"{AnsiColorCodes.Red}ERROR     {AnsiColorCodes.Reset} "
+
+        print(f"{prefixes}{msg}")
 
     def critical(self, msg: str):
         prefixes = ""
 
         if self.timestamps:
-            now = datetime.datetime.now()
-            prefixes += f"{AnsiColorCodes.Reset}{now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Red}!{AnsiColorCodes.Reset}] "
-        if self.log_type:
-            prefixes += f"{AnsiColorCodes.Red}CRITICAL  {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{AnsiColorCodes.Red}{msg}{AnsiColorCodes.Reset}")
+        prefixes += f"{AnsiColorCodes.Red}CRITICAL  {AnsiColorCodes.Reset} "
+
+        print(f"{prefixes}{msg}")
