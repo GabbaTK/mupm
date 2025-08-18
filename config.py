@@ -59,7 +59,7 @@ def create(conf: dict):
         conf (dict): The config data to save. Key is in-program name, value is the saved config value
     """
 
-    __save(conf)
+    if not os.path.exists(r".\config.ini"): __save(conf)
 
 def deleteConfig():
     """Deletes the config
@@ -126,4 +126,5 @@ def __create(args):
         file.write(str(data))
 
     return data
+
 
