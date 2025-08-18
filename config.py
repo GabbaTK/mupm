@@ -56,7 +56,7 @@ def create(conf: dict):
     """Creates a default config without user selection
 
     Args:
-        args (dict): The config data to save. Key is in-program name, value is the saved config value
+        conf (dict): The config data to save. Key is in-program name, value is the saved config value
     """
 
     __save(conf)
@@ -126,3 +126,4 @@ def __create(args):
         file.write(str(data))
 
     return data
+
