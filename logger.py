@@ -1,4 +1,5 @@
 import datetime
+import sys
 
 class LoggingTypes:
     Prefix = 0
@@ -17,16 +18,18 @@ class AnsiColorCodes:
     Gray = "\033[2m"
 
 class FunctionLogger:
-    def __init__(self, timestamps: bool = False):
+    def __init__(self, timestamps: bool = False, stdout = sys.stdout):
         """Initialises the function logger
         Logs the function that called the logger instead of the log type
 
         Args:
             timestamps (bool, optional): Enable or disable the printing of timestamps. Defaults to False.
+            stdout (any, optional): The output stream to write to. Defaults to sys.stdout.
         """
 
         self.timestamps = timestamps
         self.now = datetime.datetime.now()
+        self.stdout = stdout
 
     def log(self, function: str, msg: str, functionTextColor: AnsiColorCodes = AnsiColorCodes.Reset):
         """Log a message from a function
@@ -41,20 +44,22 @@ class FunctionLogger:
         if self.timestamps:
             timestamp = f"{AnsiColorCodes.Gray}{self.now.time()}{AnsiColorCodes.Reset} "
 
-        print(f"{timestamp}[{functionTextColor}{function}{AnsiColorCodes.Reset}] {msg}")
+        print(f"{timestamp}[{functionTextColor}{function}{AnsiColorCodes.Reset}] {msg}", file=self.stdout)
 
 class Logger:
-    def __init__(self, logging_type: LoggingTypes, timestamps: bool = False):
+    def __init__(self, logging_type: LoggingTypes, timestamps: bool = False, stdout = sys.stdout):
         """Initialises the logger
 
         Args:
             logging_type (LoggingTypes): How to log messages (Prefix: [*] MSG, Plain: MSG)
             timestamps (bool, optional): Enable or disable the printing of timestamps. Defaults to False.
+            stdout (any, optional): The output stream to write to. Defaults to sys.stdout.
         """
 
         self.logging_type = logging_type
         self.timestamps = timestamps
         self.now = datetime.datetime.now()
+        self.stdout = stdout
 
     def info(self, msg: str):
         prefixes = ""
@@ -66,7 +71,7 @@ class Logger:
 
         prefixes += f"{AnsiColorCodes.Green}INFO      {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{msg}")
+        print(f"{prefixes}{msg}", file=self.stdout)
 
     def notice(self, msg: str):
         prefixes = ""
@@ -78,7 +83,7 @@ class Logger:
 
         prefixes += f"{AnsiColorCodes.Blue}NOTICE    {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{msg}")
+        print(f"{prefixes}{msg}", file=self.stdout)
 
     def warning(self, msg: str):
         prefixes = ""
@@ -90,7 +95,7 @@ class Logger:
 
         prefixes += f"{AnsiColorCodes.Yellow}WARNING   {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{msg}")
+        print(f"{prefixes}{msg}", file=self.stdout)
 
     def alert(self, msg: str):
         prefixes = ""
@@ -102,7 +107,7 @@ class Logger:
 
         prefixes += f"{AnsiColorCodes.Magenta}ALERT     {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{msg}")
+        print(f"{prefixes}{msg}", file=self.stdout)
 
     def error(self, msg: str):
         prefixes = ""
@@ -114,7 +119,7 @@ class Logger:
 
         prefixes += f"{AnsiColorCodes.Red}ERROR     {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{msg}")
+        print(f"{prefixes}{msg}", file=self.stdout)
 
     def critical(self, msg: str):
         prefixes = ""
@@ -126,4 +131,4 @@ class Logger:
 
         prefixes += f"{AnsiColorCodes.Red}CRITICAL  {AnsiColorCodes.Reset} "
 
-        print(f"{prefixes}{msg}")
+        print(f"{prefixes}{msg}", file=self.stdout)
