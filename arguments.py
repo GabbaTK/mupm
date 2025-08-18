@@ -164,7 +164,7 @@ class ArgumentHandler:
                         if (type(arg.argument) == str and arg.argument == input_arg) or (type(arg.argument) == list and input_arg in arg.argument):
                             found_arg = arg
 
-                            if arg.arg_type == None:
+                            if arg.arg_type == None or arg.arg_type == bool:
                                 found = False
                                 arguments[arg.code_name] = True
             elif found == True:
