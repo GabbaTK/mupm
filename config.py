@@ -52,6 +52,15 @@ def config(args: dict=None) -> dict:
     if os.path.exists(r".\config.ini"):  return __load()
     else:                                return __create(args)
 
+def create(conf: dict):
+    """Creates a default config without user selection
+
+    Args:
+        args (dict): The config data to save. Key is in-program name, value is the saved config value
+    """
+
+    __save(conf)
+
 def deleteConfig():
     """Deletes the config
     """
@@ -59,7 +68,13 @@ def deleteConfig():
     try:     os.remove(r".\config.ini")
     except:  pass
 
-def updateConfig(args):
+def updateConfig(args: dict):
+    """Update the saved config
+
+    Args:
+        args (dict): The config data to update. Key is in-program name, value is user prompt
+    """
+
     print("-----                 UPDATING CONFIG                 -----")
     print("----- [N]ext | [P]revious | [ENTER] Change | [F]inish -----")
 
