@@ -28,7 +28,6 @@ class FunctionLogger:
         """
 
         self.timestamps = timestamps
-        self.now = datetime.datetime.now()
         self.stdout = stdout
 
     def log(self, function: str, msg: str, functionTextColor: AnsiColorCodes = AnsiColorCodes.Reset):
@@ -42,7 +41,7 @@ class FunctionLogger:
 
         timestamp = ""
         if self.timestamps:
-            timestamp = f"{AnsiColorCodes.Gray}{self.now.time()}{AnsiColorCodes.Reset} "
+            timestamp = f"{AnsiColorCodes.Gray}{datetime.datetime.now.time()}{AnsiColorCodes.Reset} "
 
         print(f"{timestamp}[{functionTextColor}{function}{AnsiColorCodes.Reset}] {msg}", file=self.stdout)
 
@@ -58,14 +57,13 @@ class Logger:
 
         self.logging_type = logging_type
         self.timestamps = timestamps
-        self.now = datetime.datetime.now()
         self.stdout = stdout
 
     def info(self, msg: str):
         prefixes = ""
 
         if self.timestamps:
-            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{datetime.datetime.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Green}+{AnsiColorCodes.Reset}] "
 
@@ -77,7 +75,7 @@ class Logger:
         prefixes = ""
 
         if self.timestamps:
-            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{datetime.datetime.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Blue}*{AnsiColorCodes.Reset}] "
 
@@ -89,7 +87,7 @@ class Logger:
         prefixes = ""
 
         if self.timestamps:
-            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{datetime.datetime.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Yellow}-{AnsiColorCodes.Reset}] "
 
@@ -101,7 +99,7 @@ class Logger:
         prefixes = ""
 
         if self.timestamps:
-            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{datetime.datetime.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Magenta}-{AnsiColorCodes.Reset}] "
 
@@ -113,7 +111,7 @@ class Logger:
         prefixes = ""
 
         if self.timestamps:
-            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{datetime.datetime.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Red}!{AnsiColorCodes.Reset}] "
 
@@ -125,7 +123,7 @@ class Logger:
         prefixes = ""
 
         if self.timestamps:
-            prefixes += f"{AnsiColorCodes.Reset}{self.now.time()}{AnsiColorCodes.Reset} "
+            prefixes += f"{AnsiColorCodes.Reset}{datetime.datetime.now.time()}{AnsiColorCodes.Reset} "
         if self.logging_type == LoggingTypes.Prefix:
             prefixes += f"{AnsiColorCodes.Reset}[{AnsiColorCodes.Red}!{AnsiColorCodes.Reset}] "
 
