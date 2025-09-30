@@ -17,6 +17,36 @@ class AnsiColorCodes:
     White = "\033[37m"
     Gray = "\033[2m"
 
+    EscapeSequence = "\033["
+    
+    TypeNormal = "0;"
+    TypeBold = "1;"
+    TypeItalic = "3;"
+    TypeUnderline = "4;"
+    TypeShiftHue = "5;"
+    
+    ColorBlack = "30;"
+    ColorRed = "31;"
+    ColorGreen = "32;"
+    ColorYellow = "33;"
+    ColorBlue = "34;"
+    ColorPink = "35;"
+    ColorWhite = "37;"
+    ColorDefault = "49;"
+    
+    BackBlack = "40"
+    BackRed = "41"
+    BackGreen = "42"
+    BackYellow = "43"
+    BackBlue = "44"
+    BackPurple = "45"
+    BackWhite = "47"
+    BackDefault = "49"
+    
+    Finish = "m"
+    
+    FullReset = "\033[0;0;0m"
+
 class FunctionLogger:
     def __init__(self, timestamps: bool = False, stdout = sys.stdout):
         """Initialises the function logger
