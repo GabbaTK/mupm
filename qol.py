@@ -37,3 +37,11 @@ class LoopedList(list):
     
     def cur(self):
         return super().__getitem__(self.idx)
+
+def matrixGen(x, y, fill=0):
+    matrix = []
+
+    for _ in range(y):
+        matrix.append([fill] * x)
+
+    return matrix
