@@ -70,18 +70,26 @@ class ArgumentHandler:
     def generateHelp(self):
         position_index = 1
         found = False
+        
+        print("program.py", end="")
         while True:
             for arg in self.arguments:
                 if arg.type == ArgumentOrder.Positional:
                     if arg.position == position_index:
                         found = True
-                        print(f" {arg.argument.upper()}", end="")
+                        if arg.default == None:
+                            print(f" {arg.argument.upper()}", end="")
+                        else:
+                            print(f" [{arg.argument.upper()}]", end="")
 
             if not found:
                 break
 
             found = False
             position_index += 1
+
+        print()
+        print()
 
         print(self.description)
 
